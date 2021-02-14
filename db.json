@@ -1,0 +1,21 @@
+{
+  "frases": [
+    {
+      "frase": "frase de prueba",
+      "id": 0
+    },
+    {
+      "frase": "frase de prueba2",
+      "id": 1
+    },
+    {
+      "frase": "estamos de pruebas",
+      "id": 2
+    },
+    {
+      "frase": "estamos de pruebas",
+      "id": 3
+    }
+    
+  ]
+}
