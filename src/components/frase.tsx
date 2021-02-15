@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 interface IFrase {
-    frase?: string;
+    frase?: any;
     id?: string;
 }
 class Frase extends Component<IFrase> {
@@ -12,9 +12,9 @@ class Frase extends Component<IFrase> {
         } = this.props;
         return (
             <div >
-                <div className="card-body-border margin-bottom  margin-padding">
+                <div className="card-body-border margin-bottom margin-padding">
                     <p className="text-aling">
-                        {frase}
+                        {frase.value}
                     </p>
                 </div>
             </div>

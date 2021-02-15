@@ -1,12 +1,12 @@
 import { handleActions } from 'redux-actions';
-import { createFraseSuccess, getFrasesSuccess, } from '../actions';
+import { setFrases, deleteFrase, } from '../actions';
 export default handleActions({
-    [createFraseSuccess]: (state, action) => {
+    [setFrases]: (state, action) => {
         return [...state,action.payload];
     },
 
-    [getFrasesSuccess]: (state, action) => {
-        return action.payload;
+    [deleteFrase]: (state, action) => {
+        console.log(action.payload.id);
+        return state.filter((item) => item.id !== action.payload.id);
     },
-
 }, []);

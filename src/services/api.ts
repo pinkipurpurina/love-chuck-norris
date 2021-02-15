@@ -2,9 +2,6 @@ import axios from 'axios';
 const requestHelper = axios.create({
     baseURL: 'https://api.chucknorris.io/jokes'
 });
-const requestHelperLocal = axios.create({
-    baseURL: 'http://localhost:4000'
-});
 
 export default {
     frase: {
@@ -18,22 +15,6 @@ export default {
                 method: 'get',
             })
         },
-    },
-    frases: {
-        get: () => requestHelperLocal({
-            url: 'frases',
-            method: 'get',
-        }),
-
-        create: (data: any) => requestHelperLocal({
-            url: 'frases',
-            method: 'post',
-            data
-        }),
-        delete: (url: any) => requestHelperLocal({
-            url: 'frases/'+url,
-            method: 'delete',
-        })
     },
     categorias: {
         get: () => requestHelper({

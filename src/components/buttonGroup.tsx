@@ -1,12 +1,15 @@
 import { debug } from 'console';
+import { randomInt } from 'crypto';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { setCategoria, getFrase, setFrases } from '../redux/actions';
+import frases from '../redux/reducers/frases';
 interface ICategorias {
     categorias?: string[];
     categoriaTexto?: any;
-    frase?: string;
+    frase?: any;
+    frases?: any[]
     setCategoria: (data: string) => void;
     getFrase: (data?: any) => void;
     setFrases: (data: any) => void;
@@ -20,10 +23,12 @@ class GetFrase extends Component<ICategorias> {
             categorias,
             categoriaTexto,
             frase,
+            frases,
             setCategoria,
             getFrase,
             setFrases
         } = this.props;
+        
         return (
             <div >
                 <div role="group" aria-label="Button group with nested dropdown">
@@ -50,7 +55,15 @@ class GetFrase extends Component<ICategorias> {
                             </div>
                         }
                     </div>
-                    <button type="button" className="btn btn-outline-info btn-lg btn-block col-12 " onClick={() => { if (frase.length > 0) { setFrases({ frase: frase }) } }}>Guardar frase</button>
+                    <button type="button" className="btn btn-outline-info btn-lg btn-block col-12 " onClick={() => {
+                        if (frase.value.length > 0) {
+                            if (!frases.includes(frase)) {
+                                setFrases(frase)
+                            } else {
+                                window.alert("Esa frase ya está guardada.")
+                            }
+                        }
+                    }}>Guardar frase</button>
                 </div>
             </div>
         );
