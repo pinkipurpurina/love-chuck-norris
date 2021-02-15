@@ -2,16 +2,15 @@ import { Action, createAction } from 'redux-actions';
 import api from '../services/api';
 export const handleApiError = createAction('handleApiError');
 export const getCategoriasSuccess = createAction('getCategoriasSuccess');
-
-export const createCategorias = createAction('createCategorias');//ultimaCategoria
-export const ultimaCategoria = createAction('ultimaCategoria');//ultimaCategoria
+export const createCategorias = createAction('createCategorias');
+export const ultimaCategoria = createAction('ultimaCategoria');
 export const setCategoria = createAction('setCategoria');
 export const getFrasesSuccess = createAction('getFrasesSuccess');
 export const createFraseSuccess = createAction('createFraseSuccess');
 export const setFraseSuccess = createAction('setFraseSuccess');
 export const getFraseSuccess = createAction('getFraseSuccess');
 
-
+//de la api las categorías
 export const getCategorias = () => async (dispatch: any) => {
     try {
         const response = await api.categorias.get();
@@ -20,7 +19,7 @@ export const getCategorias = () => async (dispatch: any) => {
         dispatch(handleApiError(e))
     }
 }
-//de la api random y con categoria
+//de la api random y con categoría
 export const getFrase = (categoria="") => async (dispatch: any) => {
     try {
         const response = await api.frase.get(categoria);  

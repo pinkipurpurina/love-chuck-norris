@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 interface IFrase {
     frase?: string;
     id?: string;
-  
-  }
-class Frase extends Component <IFrase> {
+}
+class Frase extends Component<IFrase> {
     state = {}
 
     render() {
         const {
-            frase, 
+            frase,
         } = this.props;
         return (
-            <div className="card-body-border margin-padding">
-                <div className="card-body-border margin-botton">
-                    <p>
+            <div >
+                <div className="card-body-border margin-bottom  margin-padding">
+                    <p className="text-aling">
                         {frase}
                     </p>
                 </div>

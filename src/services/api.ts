@@ -10,20 +10,14 @@ export default {
     frase: {
         get: (categoriaSeleccionada ="") => {
             let ruta = "random";
-            if (categoriaSeleccionada !== "") {
+            if (categoriaSeleccionada !== "") {//recibir frase random
                 ruta += "?category=" + categoriaSeleccionada
             }
-
            return requestHelper({//recibir de la categoria que se busca
                 url: ruta,
                 method: 'get',
             })
         },
-        create: (data: any) => requestHelperLocal({
-            url: 'frases',
-            method: 'post',
-            data
-        })
     },
     frases: {
         get: () => requestHelperLocal({
@@ -39,7 +33,6 @@ export default {
         delete: (url: any) => requestHelperLocal({
             url: 'frases/'+url,
             method: 'delete',
-        
         })
     },
     categorias: {

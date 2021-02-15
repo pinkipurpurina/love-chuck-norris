@@ -5,5 +5,4 @@ export default handleActions({
     [getCategoriasSuccess]: (state, action) => {
         return action.payload;
     },
-
 }, []);

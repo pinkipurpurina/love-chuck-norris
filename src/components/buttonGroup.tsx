@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import { setCategoria, getFrase, setFrases } from '../redux/actions';
-//import frase from '../redux/reducers/frase';
 interface ICategorias {
     categorias?: string[];
     categoriaTexto?: any;
@@ -25,33 +24,33 @@ class GetFrase extends Component<ICategorias> {
             getFrase,
             setFrases
         } = this.props;
-       
-
         return (
-            <div className="card-body-border margin-padding">
-                <div className="btn-group  col-12" role="group" aria-label="Button group with nested dropdown">
-                <button type="button" className="btn btn-info" onClick={() => setFrases({frase:frase})}>Guardar frase</button>
-                    <button type="button" className="btn btn-info" onClick={()=>{
-                        if(categoriaTexto!=="Categorias"){
-                            getFrase(categoriaTexto);
-                        }else{
-                             getFrase();
-                        }
-                        
-                       }}>Nueva Frase</button>
-                    {Boolean(categorias?.length) &&
-                        <div className="btn-group" role="group">
-                            <input id="btnGroupDrop1" type="button" className="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" value={categoriaTexto}>
-                            </input>
+            <div >
+                <div role="group" aria-label="Button group with nested dropdown">
+                    <div className="btn-group dropright col-12 no-padding margin-bottom">
+                        <button type="button" className="btn btn-outline-info  btn-lg btn-block" onClick={() => {
+                            if (categoriaTexto !== "random") {
+                                getFrase(categoriaTexto);
+                            } else {
+                                getFrase();
+                            }
+
+                        }}>Frase {categoriaTexto}</button>
+                        <button type="button" className="btn btn-outline-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span className="sr-only">Toggle Dropright</span>
+                        </button>
+
+                        {Boolean(categorias?.length) &&
                             <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                {categorias?.map((categoria,index) => (
+                                {categorias?.map((categoria, index) => (
                                     <a key={index} className="dropdown-item" href="#" onClick={() => {
                                         setCategoria(categoria);
                                     }}>{categoria}</a>
                                 ))}
                             </div>
-                        </div>
-                    }
+                        }
+                    </div>
+                    <button type="button" className="btn btn-outline-info btn-lg btn-block col-12 " onClick={() => { if (frase.length > 0) { setFrases({ frase: frase }) } }}>Guardar frase</button>
                 </div>
             </div>
         );
@@ -59,10 +58,7 @@ class GetFrase extends Component<ICategorias> {
 }
 const mapStateToProps = (state: any) => {
     return {
-      
         frases: state.frases,
-      
-
     };
 };
 
