@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { getCategoriasSuccess, createCategoriasSuccess } from '../actions';
+import { getCategoriasSuccess } from '../actions';
 
 export default handleActions({
     [getCategoriasSuccess]: (state, action) => {

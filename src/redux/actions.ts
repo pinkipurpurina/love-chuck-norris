@@ -2,31 +2,48 @@ import { Action, createAction } from 'redux-actions';
 import api from '../services/api';
 export const handleApiError = createAction('handleApiError');
 export const getCategoriasSuccess = createAction('getCategoriasSuccess');
+
 export const createCategorias = createAction('createCategorias');//ultimaCategoria
 export const ultimaCategoria = createAction('ultimaCategoria');//ultimaCategoria
-export const getCategoria = createAction('getCategoria');
-export const getFrases = createAction('getFrases');
-export const createFrases = createAction('createFrases');
+export const setCategoria = createAction('setCategoria');
+export const getFrasesSuccess = createAction('getFrasesSuccess');
+export const createFraseSuccess = createAction('createFraseSuccess');
+export const setFraseSuccess = createAction('setFraseSuccess');
+export const getFraseSuccess = createAction('getFraseSuccess');
+
 
 export const getCategorias = () => async (dispatch: any) => {
     try {
         const response = await api.categorias.get();
         dispatch(getCategoriasSuccess(response.data))
-
     } catch (e) {
         dispatch(handleApiError(e))
     }
-
 }
+//de la api random y con categoria
+export const getFrase = (categoria="") => async (dispatch: any) => {
+    try {
+        const response = await api.frase.get(categoria);  
 
-// export const createCategoria = () => async (dispatch: any) => {
-//     try {
-//         const response = await api.categorias.get();
-//         dispatch(getCategoriasSuccess(response.data))
-
-//     } catch (e) {
-//         dispatch(handleApiError(e))
-//     }
-
-// }
-
+        dispatch(getFraseSuccess(response.data.value))
+    } catch (e) {
+        dispatch(handleApiError(e))
+    }
+}
+//del json
+export const getFrases = () => async (dispatch: any) => {
+    try {
+        const response = await api.frases.get();        
+        dispatch(getFrasesSuccess(response.data))
+    } catch (e) {
+        dispatch(handleApiError(e))
+    }
+ }
+export const setFrases = (data) => async (dispatch: any) => {
+    try {
+        const response = await api.frases.create(data);        
+        dispatch(createFraseSuccess(response.data))
+    } catch (e) {
+        dispatch(handleApiError(e))
+    }
+}

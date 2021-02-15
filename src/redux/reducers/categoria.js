@@ -1,8 +1,8 @@
 import { handleActions } from 'redux-actions';
-import {getCategoria,ultimaCategoria } from '../actions';
+import {setCategoria,ultimaCategoria } from '../actions';
 
 export default handleActions({
-    [getCategoria]: (state, action) => {
+    [setCategoria]: (state, action) => {
         //return [state, action.payload];
         return action.payload;
     },

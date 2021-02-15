@@ -1,11 +1,12 @@
 import { handleActions } from 'redux-actions';
-import { createFrases, getFrases } from '../actions';
+import { createFraseSuccess, getFrasesSuccess, } from '../actions';
 export default handleActions({
-    createFrases: (state, action) => {
+    [createFraseSuccess]: (state, action) => {
         return [...state,action.payload];
     },
 
-    getFrases: (state, action) => {
-        return [action.payload];
+    [getFrasesSuccess]: (state, action) => {
+        return action.payload;
     },
+
 }, []);

@@ -6,16 +6,40 @@ const requestHelperLocal = axios.create({
     baseURL: 'http://localhost:4000'
 });
 
-export default{
+export default {
     frase: {
-        get: () => requestHelperLocal({
-            url: 'frases',
-            method: 'get',
-        }),
+        get: (categoriaSeleccionada ="") => {
+            let ruta = "random";
+            if (categoriaSeleccionada !== "") {
+                ruta += "?category=" + categoriaSeleccionada
+            }
+
+           return requestHelper({//recibir de la categoria que se busca
+                url: ruta,
+                method: 'get',
+            })
+        },
         create: (data: any) => requestHelperLocal({
             url: 'frases',
             method: 'post',
             data
+        })
+    },
+    frases: {
+        get: () => requestHelperLocal({
+            url: 'frases',
+            method: 'get',
+        }),
+
+        create: (data: any) => requestHelperLocal({
+            url: 'frases',
+            method: 'post',
+            data
+        }),
+        delete: (url: any) => requestHelperLocal({
+            url: 'frases/'+url,
+            method: 'delete',
+        
         })
     },
     categorias: {
@@ -24,12 +48,5 @@ export default{
             method: 'get',
         })
     },
-    
-    fraseCategoria: {
-        get: () => requestHelper({//recibir la categoria que se busca
-            url: 'random?category=animal',
-            method: 'get',
-        })
-    },
-    
+
 }
